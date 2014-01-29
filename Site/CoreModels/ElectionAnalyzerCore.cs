@@ -391,7 +391,10 @@ namespace TallyJ.CoreModels
         Db.ResultSummary.Delete(r => r.ElectionGuid == electionGuid && r.ResultType != ResultType.Manual);
       }
 
-      // first refresh all votes
+      // first refresh person vote statuses
+      new PeopleModel().EnsureFlagsAreRight(People, Savers.PersonSaver);
+
+      // then refresh all votes
       VoteAnalyzer.UpdateAllStatuses(VoteInfos, Votes, Savers.VoteSaver);
 
       // then refresh all ballots
@@ -406,7 +409,6 @@ namespace TallyJ.CoreModels
       });
 
       PrepareResultSummaries();
-
       FillResultSummaryCalc();
     }
 
@@ -736,8 +738,7 @@ namespace TallyJ.CoreModels
     protected void FillResultSummaryCalc()
     {
       ResultSummaryCalc.NumVoters = People.Count(p => p.VotingMethod.HasContent());
-      ResultSummaryCalc.NumEligibleToVote =
-          People.Count(p => !p.IneligibleReasonGuid.HasValue && p.CanVote.AsBoolean());
+      ResultSummaryCalc.NumEligibleToVote = People.Count(p => p.CanVote.AsBoolean());
 
       ResultSummaryCalc.InPersonBallots = People.Count(p => p.VotingMethod == VotingMethodEnum.InPerson);
       ResultSummaryCalc.MailedInBallots = People.Count(p => p.VotingMethod == VotingMethodEnum.MailedIn);
