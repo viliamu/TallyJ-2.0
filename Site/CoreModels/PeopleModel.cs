@@ -20,7 +20,7 @@ namespace TallyJ.CoreModels
 
     private List<Location> _locations;
     private List<Person> _people;
-    private List<Person> _peopleforFrontDesk;
+    //private List<Person> _peopleforFrontDesk;
 
     public PeopleModel()
     {
@@ -406,6 +406,7 @@ namespace TallyJ.CoreModels
           C_FullName = p.FullName,
           VotedAt = LocationName(p.VotingLocationGuid),
           When = ShowRegistrationTime(timeOffset, p),
+          p.RegistrationTime,
           p.VotingMethod,
           EnvNum = ShowEnvNum(p),
           Tellers = ShowTellers(p)
@@ -682,7 +683,7 @@ namespace TallyJ.CoreModels
       int rows;
       try
       {
-        rows = Db.Person.Delete(p => p.ElectionGuid == CurrentElectionGuid);
+        rows = Db.Person.Where(p => p.ElectionGuid == CurrentElectionGuid).Delete();
       }
       catch (SqlException)
       {
