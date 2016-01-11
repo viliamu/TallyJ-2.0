@@ -83,7 +83,7 @@
     });
 
     settings.badiDateGetter = BadiDateToday({
-      locationIdentification: 2
+      locationIdentification: 3
     });
 
     getBadiDate();
@@ -125,7 +125,10 @@
   }
   var showMoreBadiInfo = function (di) {
     var isFuture = di.frag1 > new Date();
-    var msg = 'Sunset in {location} ' + (isFuture ? 'will be' : 'was') + ' about {startingSunsetDesc} on that day.'
+    if (!di.location) {
+      di.location = 'your area';
+    }
+    var msg = di.longitude ? 'Sunset in <span class=locationDetail title="{latitude}, {longitude}">{location}</span> ' + (isFuture ? 'will be' : 'was') + ' about {startingSunsetDesc} on the election day.' : ''
     $('#badiDateIntro').html(msg.filledWith(di));
 
     // found 1st Ridvan for an LSA election?
