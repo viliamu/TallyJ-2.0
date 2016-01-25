@@ -11,6 +11,14 @@ namespace TallyJ.EF
     }
 
     private static object _lockObject;
+
+    public LocationCacher(ITallyJDbContext dbContext) : base(dbContext)
+    {
+    }
+    public LocationCacher() : base(UserSession.DbContext)
+    {
+    }
+
     protected override object LockCacheBaseObject
     {
       get

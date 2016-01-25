@@ -10,10 +10,20 @@ using TallyJ.CoreModels.Hubs;
 
 namespace TallyJ.EF
 {
-  public class ComputerCacher
+  public class ComputerCacher // not extending the base cacher
   {
     /// This static cache is shared across all elections in active use!
     private static readonly ConcurrentDictionary<Guid, Computer> CachedDict = new ConcurrentDictionary<Guid, Computer>();
+    private ITallyJDbContext db;
+
+    public ComputerCacher(ITallyJDbContext db)
+    {
+      this.db = db;
+    }
+    public ComputerCacher()
+    {
+      this.db = UserSession.DbContext;
+    }
 
     public List<Computer> AllForThisElection
     {

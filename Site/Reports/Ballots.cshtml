@@ -31,7 +31,7 @@
         LocationId = locId,
         b.StatusCode,
         Spoiled = b.StatusCode != BallotStatusEnum.Ok,
-        Votes = BallotModelCore.VoteInfosForBallot(b, votes)
+        Votes = new BallotHelper().VoteInfosForBallot(b, votes)
           .OrderBy(v => isSingleNameElection ? v.PersonFullNameFL : v.PositionOnBallot.ToString("0000"))
           .Select(v => new
           {

@@ -10,8 +10,7 @@ namespace TallyJ.EF
   {
     public override IQueryable<ResultSummary> MainQuery()
     {
-      var currentElectionGuid = UserSession.CurrentElectionGuid;
-      return CurrentDb.ResultSummary.Where(p => p.ElectionGuid == currentElectionGuid);
+      return CurrentDb.ResultSummary.Where(p => p.ElectionGuid == CurrentElectionGuid);
     }
 
     public void VoteOrPersonChanged()
@@ -26,6 +25,14 @@ namespace TallyJ.EF
     }
 
     private static object _lockObject;
+
+    public ResultSummaryCacher(ITallyJDbContext dbContext) : base(dbContext)
+    {
+    }
+    public ResultSummaryCacher() : base(UserSession.DbContext)
+    {
+    }
+
     protected override object LockCacheBaseObject
     {
       get
