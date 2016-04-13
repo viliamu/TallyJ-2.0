@@ -346,7 +346,7 @@ namespace TallyJ.CoreModels
         UpgradeOldData();
       }
 
-      new LogHelper().Add(message, true);
+      new LogHelper().Add("{0} (Comp {1})".FilledWith(message, UserSession.CurrentComputerCode), true);
 
       return true;
     }
@@ -683,18 +683,21 @@ namespace TallyJ.CoreModels
     {
       var election = UserSession.CurrentElection;
 
-      if (Db.Election.Local.All(e => e.ElectionGuid != election.ElectionGuid))
+      if (election != null)
       {
-        Db.Election.Attach(election);
+        if (Db.Election.Local.All(e => e.ElectionGuid != election.ElectionGuid))
+        {
+          Db.Election.Attach(election);
+        }
+
+        election.ListedForPublicAsOf = null;
+
+        Db.SaveChanges();
+
+        new ElectionCacher(Db).RemoveItemAndSaveCache(election);
+
+        new MainHub().CloseOutGuestTellers();
       }
-
-      election.ListedForPublicAsOf = null;
-
-      Db.SaveChanges();
-
-      new ElectionCacher(Db).RemoveItemAndSaveCache(election);
-
-      new MainHub().CloseOutGuestTellers();
 
       new PublicHub().TellPublicAboutVisibleElections();
     }
