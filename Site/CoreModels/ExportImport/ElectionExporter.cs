@@ -48,12 +48,14 @@ namespace TallyJ.CoreModels.ExportImport
 
       var site = new SiteInfo();
 
+
       var blob = new
       {
         Exported = DateTime.Now.ToString("o"),
         ByUser = UserSession.MemberName,
         UserEmail = UserSession.MemberEmail,
         Server = site.ServerName,
+        Version = UserSession.SiteVersion,
         Environment = site.CurrentEnvironment,
         // elements
         election = ExportElection(_election),
@@ -255,7 +257,7 @@ namespace TallyJ.CoreModels.ExportImport
           rt.NumInTie,
           rt.IsResolved,
           rt.TieBreakRequired,
-          NumToElect = rt.NumToElect == 0 ? null : (int?)rt.NumToElect,
+          NumToElect = rt.NumToElect == 0 ? null : (int?) rt.NumToElect,
         }).ToList();
     }
 
