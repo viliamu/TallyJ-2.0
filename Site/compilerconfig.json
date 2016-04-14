@@ -60,6 +60,16 @@
     }
   },
   {
+    "outputFile": "Views/Dashboard/ChooseElection.cshtml.css",
+    "inputFile": "Views/Dashboard/ChooseElection.cshtml.less",
+    "minify": {
+      "enabled": false
+    },
+    "options": {
+      "sourceMap": true
+    }
+  },
+  {
     "outputFile": "Views/Public/Home.cshtml.css",
     "inputFile": "Views/Public/Home.cshtml.less",
     "minify": {
@@ -78,5 +88,16 @@
     "options": {
       "sourceMap": true
     }
+  },
+  {
+    "outputFile": "Views/Setup/ImportCsv.cshtml.css",
+    "inputFile": "Views/Setup/ImportCsv.cshtml.less",
+    "minify": {
+      "enabled": false
+    },
+    "options": {
+      "sourceMap": true
+    }
+
   }
 ]
