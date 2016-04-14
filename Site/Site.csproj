@@ -649,6 +649,9 @@
     <Content Include="Views\Before\RollCall.cshtml.css">
       <DependentUpon>RollCall.cshtml.less</DependentUpon>
     </Content>
+    <Content Include="Views\Dashboard\ChooseElection.cshtml.css">
+      <DependentUpon>ChooseElection.cshtml.less</DependentUpon>
+    </Content>
     <Content Include="Views\Dashboard\Index.cshtml.css">
       <DependentUpon>Index.cshtml.less</DependentUpon>
     </Content>
@@ -657,6 +660,9 @@
     </Content>
     <Content Include="Views\Public\Home.cshtml.css">
       <DependentUpon>Home.cshtml.less</DependentUpon>
+    </Content>
+    <Content Include="Views\Setup\ImportCsv.cshtml.css">
+      <DependentUpon>ImportCsv.cshtml.less</DependentUpon>
     </Content>
     <Content Include="Xslt\FormatExport1.xslt" />
     <Content Include="Views\Public\Home.cshtml.less">
@@ -675,6 +681,12 @@
     </Content>
     <Content Include="Views\Ballots\BallotNormal.cshtml.less">
       <DependentUpon>BallotNormal.cshtml</DependentUpon>
+    </Content>
+    <Content Include="Views\Dashboard\ChooseElection.cshtml.less">
+      <DependentUpon>ChooseElection.cshtml</DependentUpon>
+    </Content>
+    <Content Include="Views\Setup\ImportCsv.cshtml.less">
+      <DependentUpon>ImportCsv.cshtml</DependentUpon>
     </Content>
     <None Include="Web.AzureDebug.config" />
     <None Include="Web.AzureRelease.config" />
@@ -752,9 +764,6 @@
     <Content Include="Views\Before\FrontDesk.cshtml.js">
       <DependentUpon>FrontDesk.cshtml</DependentUpon>
     </Content>
-    <Content Include="Views\Dashboard\ChooseElection.cshtml.css">
-      <DependentUpon>ChooseElection.cshtml</DependentUpon>
-    </Content>
     <Content Include="Views\Dashboard\ChooseElection.cshtml.js">
       <DependentUpon>ChooseElection.cshtml</DependentUpon>
     </Content>
@@ -781,9 +790,6 @@
     </Content>
     <Content Include="Views\Setup\ImportV1.cshtml.js">
       <DependentUpon>ImportV1.cshtml</DependentUpon>
-    </Content>
-    <Content Include="Views\Setup\ImportCsv.cshtml.css">
-      <DependentUpon>ImportCsv.cshtml</DependentUpon>
     </Content>
     <Content Include="Views\Setup\ImportCsv.cshtml.js">
       <DependentUpon>ImportCsv.cshtml</DependentUpon>
